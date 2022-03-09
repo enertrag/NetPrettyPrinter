@@ -28,7 +28,7 @@
 
 namespace NetPrettyPrinter
 {
-    public abstract class Token
+    internal abstract class Token
     {
         public const int DefaultIndent = 2;
 
@@ -42,7 +42,7 @@ namespace NetPrettyPrinter
         public static Token LineBreak() => new Break(9999);
     }
 
-    public class Begin : Token
+    internal class Begin : Token
     {
         public Begin(int offset = DefaultIndent, BreakType breakType = BreakType.Inconsistent)
         {
@@ -54,11 +54,11 @@ namespace NetPrettyPrinter
         public BreakType BreakType { get; }
     }
 
-    public class End : Token
+    internal class End : Token
     {
     }
 
-    public class Break : Token
+    internal class Break : Token
     {
         public Break(int blankSpace = 1, int offset = 0)
         {
@@ -70,11 +70,11 @@ namespace NetPrettyPrinter
         public int Offset { get; }
     }
 
-    public class Eof : Token
+    internal class Eof : Token
     {
     }
 
-    public class Text : Token
+    internal class Text : Token
     {
         public Text(string content)
         {

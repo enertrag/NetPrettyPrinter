@@ -28,7 +28,7 @@
 
 namespace NetPrettyPrinter
 {
-    public enum BreakType
+    internal enum BreakType
     {
         Fits,
         Inconsistent,

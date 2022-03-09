@@ -28,7 +28,7 @@
 
 namespace NetPrettyPrinter
 {
-    public class PrintStackEntry
+    internal class PrintStackEntry
     {
         public PrintStackEntry(int offset, BreakType breakType)
         {

@@ -32,7 +32,7 @@ using System.Text;
 
 namespace NetPrettyPrinter
 {
-    public class TokenPrinter
+    internal class TokenPrinter
     {
         public int Space { get; private set; }
         private readonly int _margin;

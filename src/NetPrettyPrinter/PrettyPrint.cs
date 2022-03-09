@@ -30,7 +30,7 @@ using System;
 
 namespace NetPrettyPrinter
 {
-    public class PrettyPrint
+    internal class PrettyPrint
     {
         private const int SizeInfinity = int.MaxValue;
         private readonly TokenPrinter _printer;

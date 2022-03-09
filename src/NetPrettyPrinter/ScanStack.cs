@@ -28,7 +28,7 @@
 
 namespace NetPrettyPrinter
 {
-    public class ScanStack
+    internal class ScanStack
     {
         private int _top;
         private int _bottom;
