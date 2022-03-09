@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    
+    <Compile Include="Doc.fs" />
   </ItemGroup>
 
   <ItemGroup>

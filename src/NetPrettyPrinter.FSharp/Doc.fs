@@ -26,10 +26,11 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-namespace NetPrettyPrint.FSharp
+namespace NetPrettyPrinter.FSharp
 
 module Doc =
-    open NetPrettyPrint
+    open System
+    open NetPrettyPrinter
 
     let render (doc: Doc) = doc.PrettyPrint()
 
@@ -61,11 +62,11 @@ module Doc =
 
     let numDecimal (num: decimal) = Doc.Number(num)
 
-    let timespan (ts: TimSpan) = Doc.Timespan(ts)
+    let timespan (ts: TimeSpan) = Doc.Timespan(ts)
 
     let timestamp (dt: DateTime) = Doc.Timestamp(dt)
 
-    let (<>) (left: Doc) (right: Doc) = left.Cat(right)
+    let (<->) (left: Doc) (right: Doc) = left.Cat(right)
 
     let hcat (docs: seq<Doc>) = Doc.Cat(docs)
 
@@ -73,7 +74,7 @@ module Doc =
 
     let hsep (docs: seq<Doc>) = Doc.Sep(docs)
 
-    let (<||>) (left: Doc) (right: Doc) = left.CatOrAbove(right)
+    let (<|-|>) (left: Doc) (right: Doc) = left.CatOrAbove(right)
 
     let cat (docs: seq<Doc>) = Doc.CatOrAbove(docs)
 
@@ -83,19 +84,21 @@ module Doc =
 
     let (<^>) (top: Doc) (bottom: Doc) = top.Above(bottom)
 
-    let vcat (docs: seq<Doc>) = Doc.JoinAbove(docs)
+    let vcat (docs: seq<Doc>) = Doc.JoinAbove(docs, empty)
 
     let hcatJoin (sep: Doc) (docs: seq<Doc>) = Doc.JoinCat(docs, sep)
 
     let hsepJoin (sep: Doc) (docs: seq<Doc>) = Doc.JoinSep(docs, sep)
 
-    let catJoin (sep: Doc) (docs: seq<Doc>) = Doc.JoinCatOrAboce(docs, sep)
+    let catJoin (sep: Doc) (docs: seq<Doc>) = Doc.JoinCatOrAbove(docs, sep)
 
     let sepJoin (sep: Doc) (docs: seq<Doc>) = Doc.JoinSepOrAbove(docs, sep)
 
-    let break (amount: uint32) (doc: Doc) = doc.Break(amount)
+    let vcatJoin (sep: Doc) (docs: seq<Doc>) = Doc.JoinAbove(docs, sep)
 
-    let breakAll (amount: uint32) (doc: Doc) = doc.BreakAll(amount)
+    let wrap (amount: uint32) (doc: Doc) = doc.Break(amount)
+
+    let wrapAll (amount: uint32) (doc: Doc) = doc.BreakAll(amount)
 
     let indent (amount: uint32) (doc: Doc) = doc.Indent(amount)
 
@@ -105,7 +108,7 @@ module Doc =
 
     let comma = Doc.Comma
 
-    let dot = Doc.dot
+    let dot = Doc.Dot
 
     let parenOpen = Doc.ParenOpen
 
