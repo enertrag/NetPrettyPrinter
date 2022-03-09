@@ -28,20 +28,27 @@
 
 namespace NetPrettyPrinter.FSharp
 
+/// Functions and constants to compose documents that can be pretty printed.
 module Doc =
     open System
     open NetPrettyPrinter
 
+    /// Pretty print a document for a prescribed width of 80.
     let render (doc: Doc) = doc.PrettyPrint()
 
+    /// Pretty print a document for the given prescribed width.
     let renderWidth (maxWidth: uint32) (doc: Doc) = doc.PrettyPrint(maxWidth)
 
+    /// The empty document.
     let empty = Doc.Empty
 
+    /// Transform a string into a document.
     let text (content: string) = Doc.Text(content)
 
+    /// Transform an int32 into a document.
     let numInt32 (num: int32) = Doc.Number(num)
 
+    /// Transform a uint32 into a document.
     let numUInt32 (num: uint32) = Doc.Number(num)
 
     let numInt16 (num: int16) = Doc.Number(num)
