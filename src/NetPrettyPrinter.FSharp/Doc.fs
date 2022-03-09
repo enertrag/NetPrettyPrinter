@@ -31,7 +31,39 @@ namespace NetPrettyPrint.FSharp
 module Doc =
     open NetPrettyPrint
 
+    let render (doc: Doc) = doc.PrettyPrint()
+
+    let renderWidth (maxWidth: uint32) (doc: Doc) = doc.PrettyPrint(maxWidth)
+
+    let empty = Doc.Empty
+
     let text (content: string) = Doc.Text(content)
+
+    let numInt32 (num: int32) = Doc.Number(num)
+
+    let numUInt32 (num: uint32) = Doc.Number(num)
+
+    let numInt16 (num: int16) = Doc.Number(num)
+
+    let numUInt16 (num: uint16) = Doc.Number(num)
+
+    let numInt8 (num: int8) = Doc.Number(num)
+
+    let numUInt8 (num: uint8) = Doc.Number(num)
+
+    let numInt64 (num: int64) = Doc.Number(num)
+    
+    let numUInt64 (num: uint64) = Doc.Number(num)
+
+    let numDouble (num: double) = Doc.Number(num)
+
+    let numSingle (num: single) = Doc.Number(num)
+
+    let numDecimal (num: decimal) = Doc.Number(num)
+
+    let timespan (ts: TimSpan) = Doc.Timespan(ts)
+
+    let timestamp (dt: DateTime) = Doc.Timestamp(dt)
 
     let (<>) (left: Doc) (right: Doc) = left.Cat(right)
 
@@ -51,7 +83,7 @@ module Doc =
 
     let (<^>) (top: Doc) (bottom: Doc) = top.Above(bottom)
 
-    let vcat (docs: seq<Doc>) = failwith "NYI" // TODO
+    let vcat (docs: seq<Doc>) = Doc.JoinAbove(docs)
 
     let hcatJoin (sep: Doc) (docs: seq<Doc>) = Doc.JoinCat(docs, sep)
 
@@ -60,3 +92,30 @@ module Doc =
     let catJoin (sep: Doc) (docs: seq<Doc>) = Doc.JoinCatOrAboce(docs, sep)
 
     let sepJoin (sep: Doc) (docs: seq<Doc>) = Doc.JoinSepOrAbove(docs, sep)
+
+    let break (amount: uint32) (doc: Doc) = doc.Break(amount)
+
+    let breakAll (amount: uint32) (doc: Doc) = doc.BreakAll(amount)
+
+    let indent (amount: uint32) (doc: Doc) = doc.Indent(amount)
+
+    let indentAll (amount: uint32) (doc: Doc) = doc.IndentAll(amount)
+
+    let inParens (doc: Doc) = Doc.InParens(doc)
+
+    let comma = Doc.Comma
+
+    let dot = Doc.dot
+
+    let parenOpen = Doc.ParenOpen
+
+    let parenClose = Doc.ParenClose
+
+    let space = Doc.Space
+
+    let spaces (amount: uint32) = Doc.Spaces(amount)
+
+    let newline = Doc.NewLine
+
+
+
