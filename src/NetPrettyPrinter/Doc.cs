@@ -28,6 +28,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using Tok = NetPrettyPrinter.Token;
@@ -35,8 +36,9 @@ using Tok = NetPrettyPrinter.Token;
 namespace NetPrettyPrinter;
 
 /// <summary>
-///    
+///
 /// </summary>
+[SuppressMessage("Usage", "CA2225: Operator overloads have named alternates", Justification = "Named alternatives would be misleading.")]
 public class Doc
 {
     private readonly Elem _elem;
@@ -44,7 +46,7 @@ public class Doc
     private Doc(Elem elem) => _elem = elem;
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
     /// <param name="lineWidth"></param>
     /// <returns></returns>
@@ -79,221 +81,204 @@ public class Doc
     }
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
     /// <param name="content"></param>
     /// <returns></returns>
     public static Doc Text(string content) => NewDoc(Singleton(Tok.Text(content)));
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
     /// <param name="num"></param>
     /// <returns></returns>
     public static Doc Number(int num) => num.ToString(CultureInfo.InvariantCulture);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
     /// <param name="num"></param>
     /// <returns></returns>
     public static Doc Number(uint num) => num.ToString(CultureInfo.InvariantCulture);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
     /// <param name="num"></param>
     /// <returns></returns>
     public static Doc Number(short num) => num.ToString(CultureInfo.InvariantCulture);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
     /// <param name="num"></param>
     /// <returns></returns>
     public static Doc Number(ushort num) => num.ToString(CultureInfo.InvariantCulture);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
     /// <param name="num"></param>
-    /// <returns></returns>        
+    /// <returns></returns>
     public static Doc Number(sbyte num) => num.ToString(CultureInfo.InvariantCulture);
     /// <summary>
-    ///    
+    ///
     /// </summary>
     /// <param name="num"></param>
-    /// <returns></returns>        
+    /// <returns></returns>
 
     public static Doc Number(byte num) => num.ToString(CultureInfo.InvariantCulture);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
     /// <param name="num"></param>
-    /// <returns></returns>        
+    /// <returns></returns>
 
     public static Doc Number(long num) => num.ToString(CultureInfo.InvariantCulture);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
     /// <param name="num"></param>
-    /// <returns></returns>        
+    /// <returns></returns>
 
     public static Doc Number(ulong num) => num.ToString(CultureInfo.InvariantCulture);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
     /// <param name="num"></param>
-    /// <returns></returns>        
+    /// <returns></returns>
 
     public static Doc Number(float num) => num.ToString(CultureInfo.InvariantCulture);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
     /// <param name="num"></param>
-    /// <returns></returns>        
+    /// <returns></returns>
 
     public static Doc Number(double num) => num.ToString(CultureInfo.InvariantCulture);
 
     /// <summary>
-    ///     
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
+    /// <param name="num"></param>
+    /// <returns></returns>
 
     public static Doc Number(decimal num) => num.ToString(CultureInfo.InvariantCulture);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
     /// <param name="span"></param>
     /// <returns></returns>
     public static Doc Timespan(TimeSpan span) => span.ToString();
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
-
+    /// <param name="timestamp"></param>
+    /// <returns></returns>
     public static Doc Timestamp(DateTime timestamp) => timestamp.ToString("s", CultureInfo.InvariantCulture);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
+    /// <param name="content"></param>
+    /// <returns></returns>
     public static implicit operator Doc(string content) => Text(content);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
+    /// <param name="num"></param>
+    /// <returns></returns>
     public static implicit operator Doc(int num) => Number(num);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
+    /// <param name="num"></param>
+    /// <returns></returns>
     public static implicit operator Doc(uint num) => Number(num);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
+    /// <param name="num"></param>
+    /// <returns></returns>
     public static implicit operator Doc(short num) => Number(num);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
+    /// <param name="num"></param>
+    /// <returns></returns>
     public static implicit operator Doc(ushort num) => Number(num);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
+    /// <param name="num"></param>
+    /// <returns></returns>
     public static implicit operator Doc(sbyte num) => Number(num);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
+    /// <param name="num"></param>
+    /// <returns></returns>
     public static implicit operator Doc(byte num) => Number(num);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
+    /// <param name="num"></param>
+    /// <returns></returns>>
     public static implicit operator Doc(long num) => Number(num);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
+    /// <param name="num"></param>
+    /// <returns></returns>
     public static implicit operator Doc(ulong num) => Number(num);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
+    /// <param name="num"></param>
+    /// <returns></returns>
     public static implicit operator Doc(float num) => Number(num);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
+    /// <param name="num"></param>
+    /// <returns></returns>
     public static implicit operator Doc(double num) => Number(num);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
+    /// <param name="num"></param>
+    /// <returns></returns>
     public static implicit operator Doc(decimal num) => Number(num);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
+    /// <param name="span"></param>
+    /// <returns></returns>
     public static implicit operator Doc(TimeSpan span) => Timespan(span);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
-    /// <returns></returns>        
+    /// <param name="timestamp"></param>
+    /// <returns></returns>
     public static implicit operator Doc(DateTime timestamp) => Timestamp(timestamp);
 
     /// <summary>
@@ -301,7 +286,11 @@ public class Doc
     /// </summary>
     /// <param name="doc">right document</param>
     /// <returns>composed document</returns>
-    public Doc Cat(Doc doc) => NewDoc(!doc._elem.IsVisible ? _elem : _elem.Concat(doc._elem));
+    public Doc Cat(Doc doc)
+    {
+        AbortIfNull(nameof(doc), doc);
+        return NewDoc(!doc._elem.IsVisible ? _elem : _elem.Concat(doc._elem));
+    }
 
     /// <summary>
     ///     Besides each other without space.
@@ -309,7 +298,11 @@ public class Doc
     /// <param name="left">left document</param>
     /// <param name="right">right document</param>
     /// <returns>composed document</returns>
-    public static Doc operator +(Doc left, Doc right) => left.Cat(right);
+    public static Doc operator +(Doc left, Doc right)
+    {
+        AbortIfNull(nameof(left), left);
+        return left.Cat(right);
+    }
 
     /// <summary>
     ///     Besides for a sequence without space.
@@ -324,8 +317,11 @@ public class Doc
     /// <param name="doc">right document</param>
     /// <param name="spaces">number of separating spaces</param>
     /// <returns>composed document</returns>
-    public Doc Sep(Doc doc, uint spaces = 1) =>
-        NewDoc(!doc._elem.IsVisible ? _elem : _elem.Concat(Spaces(spaces)._elem).Concat(doc._elem));
+    public Doc Sep(Doc doc, uint spaces = 1)
+    {
+        AbortIfNull(nameof(doc), doc);
+        return NewDoc(!doc._elem.IsVisible ? _elem : _elem.Concat(Spaces(spaces)._elem).Concat(doc._elem));
+    }
 
     /// <summary>
     ///     Besides each other without space.
@@ -333,7 +329,11 @@ public class Doc
     /// <param name="left">left document</param>
     /// <param name="right">right document</param>
     /// <returns>composed document</returns>
-    public static Doc operator %(Doc left, Doc right) => left.Sep(right);
+    public static Doc operator %(Doc left, Doc right)
+    {
+        AbortIfNull(nameof(left), left);
+        return left.Sep(right);
+    }
 
     /// <summary>
     ///     Besides for a sequence with space.
@@ -348,8 +348,11 @@ public class Doc
     /// </summary>
     /// <param name="doc">right or lower document</param>
     /// <returns>composed document</returns>
-    public Doc CatOrAbove(Doc doc) =>
-        NewDoc(!doc._elem.IsVisible ? _elem : _elem.Concat(Singleton(Tok.Break(0))).Concat(doc._elem));
+    public Doc CatOrAbove(Doc doc)
+    {
+        AbortIfNull(nameof(doc), doc);
+        return NewDoc(!doc._elem.IsVisible ? _elem : _elem.Concat(Singleton(Tok.Break(0))).Concat(doc._elem));
+    }
 
     /// <summary>
     ///     Besides without space or one above the other.
@@ -357,7 +360,11 @@ public class Doc
     /// <param name="left">left or  document</param>
     /// <param name="right">right or lower document</param>
     /// <returns>composed document</returns>
-    public static Doc operator |(Doc left, Doc right) => left.CatOrAbove(right);
+    public static Doc operator |(Doc left, Doc right)
+    {
+        AbortIfNull(nameof(left), left);
+        return left.CatOrAbove(right);
+    }
 
     /// <summary>
     ///     Besides without space or above each other for a sequence.
@@ -371,8 +378,11 @@ public class Doc
     /// </summary>
     /// <param name="doc">right or lower document</param>
     /// <returns>composed document</returns>
-    public Doc SepOrAbove(Doc doc) =>
-        NewDoc(!doc._elem.IsVisible ? _elem : _elem.Concat(Singleton(Tok.Break())).Concat(doc._elem));
+    public Doc SepOrAbove(Doc doc)
+    {
+        AbortIfNull(nameof(doc), doc);
+        return NewDoc(!doc._elem.IsVisible ? _elem : _elem.Concat(Singleton(Tok.Break())).Concat(doc._elem));
+    }
 
     /// <summary>
     ///     Besides with space or one above the other.
@@ -380,7 +390,11 @@ public class Doc
     /// <param name="left">left or  document</param>
     /// <param name="right">right or lower document</param>
     /// <returns>composed document</returns>
-    public static Doc operator &(Doc left, Doc right) => left.SepOrAbove(right);
+    public static Doc operator &(Doc left, Doc right)
+    {
+        AbortIfNull(nameof(left), left);
+        return left.SepOrAbove(right);
+    }
 
     /// <summary>
     ///     Besides with space or above each other for a sequence.
@@ -394,10 +408,13 @@ public class Doc
     /// </summary>
     /// <param name="doc">lower document</param>
     /// <returns>composed document</returns>
-    public Doc Above(Doc doc) =>
-        _elem.IsVisible && doc._elem.IsVisible
+    public Doc Above(Doc doc)
+    {
+        AbortIfNull(nameof(doc), doc);
+        return _elem.IsVisible && doc._elem.IsVisible
             ? NewDoc(_elem.Concat(Singleton(Tok.LineBreak())).Concat(doc._elem))
             : NewDoc(_elem.Concat(doc._elem));
+    }
 
     /// <summary>
     ///     Put document above each other
@@ -405,264 +422,244 @@ public class Doc
     /// <param name="top">upper document</param>
     /// <param name="bottom">lower document</param>
     /// <returns>composed document</returns>
-    public static Doc operator ^(Doc top, Doc bottom) => top.Above(bottom);
+    public static Doc operator ^(Doc top, Doc bottom)
+    {
+        AbortIfNull(nameof(top), top);
+        return top.Above(bottom);
+    }
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public static Doc JoinCat(IEnumerable<Doc> docs, Doc sep) => JoinDocs(docs, (agg, doc) => agg + sep + doc);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public static Doc JoinSep(IEnumerable<Doc> docs, Doc sep) => JoinDocs(docs, (agg, doc) => agg + sep % doc);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public static Doc JoinCatOrAbove(IEnumerable<Doc> docs, Doc sep) => JoinDocs(docs, (agg, doc) => agg + sep | doc);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public static Doc JoinSepOrAbove(IEnumerable<Doc> docs, Doc sep) => JoinDocs(docs, (agg, doc) => agg + sep & doc);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public static Doc JoinAbove(IEnumerable<Doc> docs, Doc sep) => JoinDocs(docs, (agg, doc) => agg + sep ^ doc);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public Doc Break(uint amount) =>
         NewDoc(Singleton(Tok.Begin(Convert.ToInt32(amount))).Concat(_elem).Concat(Singleton(Tok.End())));
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
-    public static Doc Break(uint amount, Doc doc) => doc.Break(amount);
+    public static Doc Break(uint amount, Doc doc)
+    {
+        AbortIfNull(nameof(doc), doc);
+        return doc.Break(amount);
+    }
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
+
     /// <returns></returns>
     public Doc Break() => Break(Tok.DefaultIndent);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
-    public static Doc Break(Doc doc) => doc.Break();
+    public static Doc Break(Doc doc)
+    {
+        AbortIfNull(nameof(doc), doc);
+        return doc.Break();
+    }
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
+
     /// <returns></returns>
     public Doc BreakAll(uint amount) => NewDoc(Singleton(Tok.Begin(Convert.ToInt32(amount), BreakType.Consistent))
         .Concat(_elem)
         .Concat(Singleton(Tok.End())));
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
-    public static Doc BreakAll(uint amount, Doc doc) => doc.BreakAll(amount);
+    public static Doc BreakAll(uint amount, Doc doc)
+    {
+        AbortIfNull(nameof(doc), doc);
+        return doc.BreakAll(amount);
+    }
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
+
     /// <returns></returns>
     public static Doc BreakAll(Doc doc) => BreakAll(Tok.DefaultIndent, doc);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public Doc Indent(uint amount) => NewDoc(Singleton(Tok.Break(offset: Convert.ToInt32(amount)))
         .Concat(Singleton(Tok.Begin(0))).Concat(_elem)
         .Concat(Singleton(Tok.End())));
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
-    public static Doc Indent(uint amount, Doc doc) => doc.Indent(amount);
+    public static Doc Indent(uint amount, Doc doc)
+    {
+        AbortIfNull(nameof(doc), doc);
+        return doc.Indent(amount);
+    }
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public Doc Indent() => Indent(Tok.DefaultIndent);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
-    public static Doc Indent(Doc doc) => doc.Indent();
+    public static Doc Indent(Doc doc)
+    {
+        AbortIfNull(nameof(doc), doc);
+        return doc.Indent();
+    }
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public Doc IndentAll(uint amount) => NewDoc(Singleton(Tok.Break(offset: Convert.ToInt32(amount)))
         .Concat(Singleton(Tok.Begin(0, BreakType.Consistent))).Concat(_elem)
         .Concat(Singleton(Tok.End())));
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
-    public static Doc IndentAll(uint amount, Doc doc) => doc.IndentAll(amount);
+    public static Doc IndentAll(uint amount, Doc doc)
+    {
+        AbortIfNull(nameof(doc), doc);
+        return doc.IndentAll(amount);
+    }
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public Doc IndentAll() => IndentAll(Tok.DefaultIndent);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
-    public static Doc IndentAll(Doc doc) => doc.IndentAll();
+    public static Doc IndentAll(Doc doc)
+    {
+        AbortIfNull(nameof(doc), doc);
+        return doc.IndentAll();
+    }
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public static Doc InParens(Doc doc) => "(" + doc + ")";
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
-    public static Doc Comma = ",";
+    public static Doc Comma => ",";
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
-    public static Doc Dot = ".";
+    public static Doc Dot => ".";
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public static Doc ParenOpen => "(";
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public static Doc ParenClose => ")";
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public static Doc Space => Spaces(1);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public static Doc Spaces(uint amount) => new string(' ', Convert.ToInt32(amount));
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public static Doc NewLine => NewDoc(Singleton(Tok.LineBreak()));
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     private static readonly Elem EmptyElem = new ElemEmpty();
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public static readonly Doc Empty = NewDoc(EmptyElem);
 
     /// <summary>
-    ///    
+    ///
     /// </summary>
-    /// <param name=""></param>
-    /// <param name=""></param>
     /// <returns></returns>
     public static Doc ToDoc(bool visible, string text) => visible ? text : Empty;
 
-    private static Doc NewDoc(Elem elem) => new Doc(elem);
+    private static void AbortIfNull(string paramName, [NotNull] object argument)
+    {
+        if(argument is null)
+        {
+            throw new ArgumentNullException(paramName);
+        }
+    }
+    private static Doc NewDoc(Elem elem) => new(elem);
 
     private static Elem Singleton(Tok token) => new ElemSingle(token);
 

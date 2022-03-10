@@ -30,15 +30,33 @@ using System.Collections.Generic;
 
 namespace NetPrettyPrinter;
 
+/// <summary>
+///
+/// </summary>
 public static class DocExtensions
 {
+    /// <summary>
+    ///
+    /// </summary>
     public static Doc JoinCat(this IEnumerable<Doc> docs, Doc sep) => Doc.JoinCat(docs, sep);
 
+    /// <summary>
+    ///
+    /// </summary>
     public static Doc JoinSep(this IEnumerable<Doc> docs, Doc sep) => Doc.JoinSep(docs, sep);
 
+    /// <summary>
+    ///
+    /// </summary>
     public static Doc JoinCatOrAbove(this IEnumerable<Doc> docs, Doc sep) => Doc.JoinCatOrAbove(docs, sep);
 
+    /// <summary>
+    ///
+    /// </summary>
     public static Doc JoinSepOrAbove(this IEnumerable<Doc> docs, Doc sep) => Doc.JoinSepOrAbove(docs, sep);
 
+    /// <summary>
+    ///
+    /// </summary>
     public static Doc JoinAbove(this IEnumerable<Doc> docs, Doc sep) => Doc.JoinAbove(docs, sep);
 }
