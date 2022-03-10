@@ -34,7 +34,7 @@ internal class PrettyPrint
 {
     private const int SizeInfinity = int.MaxValue;
     private readonly TokenPrinter _printer;
-    private readonly ScanLifo _scanStack;
+    private readonly ScanLifo _scanLifo;
     private readonly Token[] _token;
     private readonly int[] _size;
     private int _leftTotal;
@@ -45,7 +45,7 @@ internal class PrettyPrint
     public PrettyPrint(int lineWidth = 80)
     {
         var n = 3 * lineWidth;
-        _scanStack = new ScanLifo(n);
+        _scanLifo = new ScanLifo(n);
         _token = new Token[n];
         _size = new int[n];
         _leftTotal = 1;
@@ -81,7 +81,7 @@ internal class PrettyPrint
 
     private void PrettyPrintEof()
     {
-        if(!_scanStack.IsEmpty)
+        if(!_scanLifo.IsEmpty)
         {
             CheckStack(0);
             AdvanceLeft(_token[_left], _size[_left]);
@@ -92,7 +92,7 @@ internal class PrettyPrint
 
     private void PrettyPrintBegin(Token begin)
     {
-        if(_scanStack.IsEmpty)
+        if(_scanLifo.IsEmpty)
         {
             _leftTotal = 1;
             _rightTotal = 1;
@@ -106,12 +106,12 @@ internal class PrettyPrint
 
         _token[_right] = begin;
         _size[_right] = -_rightTotal;
-        _scanStack.Push(_right);
+        _scanLifo.Push(_right);
     }
 
     private void PrettyPrintEnd(Token end)
     {
-        if(_scanStack.IsEmpty)
+        if(_scanLifo.IsEmpty)
         {
             _printer.Print(end, 0);
             return;
@@ -120,12 +120,12 @@ internal class PrettyPrint
         AdvanceRight();
         _token[_right] = end;
         _size[_right] = -1;
-        _scanStack.Push(_right);
+        _scanLifo.Push(_right);
     }
 
     private void PrettyPrintBreak(Break @break)
     {
-        if(_scanStack.IsEmpty)
+        if(_scanLifo.IsEmpty)
         {
             _leftTotal = 1;
             _rightTotal = 1;
@@ -138,7 +138,7 @@ internal class PrettyPrint
         }
 
         CheckStack(0);
-        _scanStack.Push(_right);
+        _scanLifo.Push(_right);
         _token[_right] = @break;
         _size[_right] = -_rightTotal;
         _rightTotal += @break.BlankSpace;
@@ -146,7 +146,7 @@ internal class PrettyPrint
 
     private void PrettyPrintText(Text text)
     {
-        if(_scanStack.IsEmpty)
+        if(_scanLifo.IsEmpty)
         {
             _printer.Print(text, text.Length);
             return;
@@ -168,11 +168,11 @@ internal class PrettyPrint
                 return;
             }
 
-            if(!_scanStack.IsEmpty)
+            if(!_scanLifo.IsEmpty)
             {
-                if(_left == _scanStack.Bottom)
+                if(_left == _scanLifo.Bottom)
                 {
-                    _size[_scanStack.PopBottom()] = SizeInfinity;
+                    _size[_scanLifo.PopBottom()] = SizeInfinity;
                 }
             }
 
@@ -191,19 +191,19 @@ internal class PrettyPrint
     {
         while(true)
         {
-            if(_scanStack.IsEmpty)
+            if(_scanLifo.IsEmpty)
             {
                 return;
             }
 
-            var top = _scanStack.Top;
+            var top = _scanLifo.Top;
             switch(_token[top])
             {
                 case Begin:
                 {
                     if(k > 0)
                     {
-                        _size[_scanStack.Pop()] = _size[top] + _rightTotal;
+                        _size[_scanLifo.Pop()] = _size[top] + _rightTotal;
                         k -= 1;
                         continue;
                     }
@@ -211,12 +211,12 @@ internal class PrettyPrint
                     break;
                 }
                 case Terminal:
-                    _size[_scanStack.Pop()] = 1;
+                    _size[_scanLifo.Pop()] = 1;
                     k += 1;
                     continue;
                 default:
                 {
-                    _size[_scanStack.Pop()] = _size[top] + _rightTotal;
+                    _size[_scanLifo.Pop()] = _size[top] + _rightTotal;
                     if(k > 0)
                     {
                         continue;
@@ -232,7 +232,7 @@ internal class PrettyPrint
 
     private void AdvanceRight()
     {
-        _right = (_right + 1) % _scanStack.Length;
+        _right = (_right + 1) % _scanLifo.Length;
         if(_right == _left)
         {
             throw new Exception("token queue full");
@@ -262,7 +262,7 @@ internal class PrettyPrint
                 return;
             }
 
-            _left = (_left + 1) % _scanStack.Length;
+            _left = (_left + 1) % _scanLifo.Length;
             token = _token[_left];
             length = _size[_left];
         }
