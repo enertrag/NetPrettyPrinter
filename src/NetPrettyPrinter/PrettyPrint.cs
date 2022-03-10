@@ -75,7 +75,7 @@ internal class PrettyPrint
                 PrettyPrintText(text);
                 break;
             default:
-                throw new ArgumentOutOfRangeException($"unexpected {token}");
+                throw new ArgumentOutOfRangeException($"unexpected token {token}");
         }
     }
 
