@@ -35,7 +35,7 @@ let private commandLineOptions target =
 usage: {target} [options]
 
 options:
--c <cfg>              Configuration (Debug, Release)
+-c <cfg>  Configuration (Debug, Release)
 """
 
 let private argsParser (target: string) = Docopt(commandLineOptions target)

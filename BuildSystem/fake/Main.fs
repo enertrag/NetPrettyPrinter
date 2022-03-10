@@ -28,11 +28,8 @@
 module Main
 
 open Fake.Core
-open Fake.IO.Globbing.Operators
 open Fake.Core.TargetOperators
 open Definitions
-open Version
-open Utils
 open Targets
 
 let private setupTargets () =
@@ -44,12 +41,14 @@ let private setupTargets () =
     Target.create "Restore" (Restore.target Solution)
     Target.create "Pack" (Pack.target nugetProjects version)
     Target.create "Noop" ignore
+    Target.create "GenerateDocs" GenerateDocs.target
 
 let private setupTargetDependendies () =
     "Clean" ==> "Rebuild" |> ignore
     "Build" ==> "Rebuild" |> ignore
     "Clean" ?=> "Build" |> ignore
     "Build" ==> "Pack" |> ignore
+    "Build" ==> "GenerateDocs" |> ignore
 
 let private setupFakeContext (args: string list) =
     let execContext = Context.FakeExecutionContext.Create false "FakeBuild.exe" args
