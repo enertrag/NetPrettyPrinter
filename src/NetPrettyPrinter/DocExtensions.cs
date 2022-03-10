@@ -1,6 +1,6 @@
 ﻿// Copyright(c) 2020, ENERTRAG SE
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //
@@ -21,25 +21,24 @@
 // DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
 // FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
 // DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+// SERVICES, LOSS OF USE, DATA, OR PROFITS, OR BUSINESS INTERRUPTION) HOWEVER
 // CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using System.Collections.Generic;
 
-namespace NetPrettyPrinter
+namespace NetPrettyPrinter;
+
+public static class DocExtensions
 {
-    public static class DocExtensions
-    {
-        public static Doc JoinCat(this IEnumerable<Doc> docs, Doc sep) => Doc.JoinCat(docs, sep);
+    public static Doc JoinCat(this IEnumerable<Doc> docs, Doc sep) => Doc.JoinCat(docs, sep);
 
-        public static Doc JoinSep(this IEnumerable<Doc> docs, Doc sep) => Doc.JoinSep(docs, sep);
+    public static Doc JoinSep(this IEnumerable<Doc> docs, Doc sep) => Doc.JoinSep(docs, sep);
 
-        public static Doc JoinCatOrAbove(this IEnumerable<Doc> docs, Doc sep) => Doc.JoinCatOrAbove(docs, sep);
+    public static Doc JoinCatOrAbove(this IEnumerable<Doc> docs, Doc sep) => Doc.JoinCatOrAbove(docs, sep);
 
-        public static Doc JoinSepOrAbove(this IEnumerable<Doc> docs, Doc sep) => Doc.JoinSepOrAbove(docs, sep);
+    public static Doc JoinSepOrAbove(this IEnumerable<Doc> docs, Doc sep) => Doc.JoinSepOrAbove(docs, sep);
 
-        public static Doc JoinAbove(this IEnumerable<Doc> docs, Doc sep) => Doc.JoinAbove(docs, sep);
-    }
+    public static Doc JoinAbove(this IEnumerable<Doc> docs, Doc sep) => Doc.JoinAbove(docs, sep);
 }
