@@ -1,4 +1,4 @@
-﻿// Copyright(c) 2020, ENERTRAG SE
+﻿// Copyright(c) 2022, ENERTRAG SE
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -38,7 +38,9 @@ namespace NetPrettyPrinter;
 /// <summary>
 ///
 /// </summary>
-[SuppressMessage("Usage", "CA2225: Operator overloads have named alternates", Justification = "Named alternatives would be misleading.")]
+[SuppressMessage(
+    "Usage", "CA2225: Operator overloads have named alternates",
+    Justification = "Named alternatives would be misleading.")]
 public class Doc
 {
     private readonly Elem _elem;
