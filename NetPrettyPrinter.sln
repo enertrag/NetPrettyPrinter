@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{513A6C85-AE46-498A-A651-592E142B33A1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B153CE47-97C3-4FBF-9EED-7C65B7D804AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetPrettyPrinter", "src\NetPrettyPrinter\NetPrettyPrinter.csproj", "{6A0440AF-41C7-43C9-A547-E60ACE2F6F29}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "main", "main", "{8F0E84DB-E69C-461B-987F-0844DB6F68FE}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "NetPrettyPrinter.FSharp", "src\NetPrettyPrinter.FSharp\NetPrettyPrinter.FSharp.fsproj", "{63BF9E60-8A09-4858-A3E3-E197A415DAD2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetPrettyPrinter", "src\main\NetPrettyPrinter\NetPrettyPrinter.csproj", "{A5A79A5B-8E34-4EA0-A692-61022F664103}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "NetPrettyPrinter.FSharp", "src\main\NetPrettyPrinter.FSharp\NetPrettyPrinter.FSharp.fsproj", "{5E065EA6-AAA1-4082-856C-124CECA8A099}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,17 +20,18 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6A0440AF-41C7-43C9-A547-E60ACE2F6F29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A0440AF-41C7-43C9-A547-E60ACE2F6F29}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A0440AF-41C7-43C9-A547-E60ACE2F6F29}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A0440AF-41C7-43C9-A547-E60ACE2F6F29}.Release|Any CPU.Build.0 = Release|Any CPU
-		{63BF9E60-8A09-4858-A3E3-E197A415DAD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63BF9E60-8A09-4858-A3E3-E197A415DAD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63BF9E60-8A09-4858-A3E3-E197A415DAD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63BF9E60-8A09-4858-A3E3-E197A415DAD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5A79A5B-8E34-4EA0-A692-61022F664103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5A79A5B-8E34-4EA0-A692-61022F664103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5A79A5B-8E34-4EA0-A692-61022F664103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5A79A5B-8E34-4EA0-A692-61022F664103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E065EA6-AAA1-4082-856C-124CECA8A099}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E065EA6-AAA1-4082-856C-124CECA8A099}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E065EA6-AAA1-4082-856C-124CECA8A099}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E065EA6-AAA1-4082-856C-124CECA8A099}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{6A0440AF-41C7-43C9-A547-E60ACE2F6F29} = {513A6C85-AE46-498A-A651-592E142B33A1}
-		{63BF9E60-8A09-4858-A3E3-E197A415DAD2} = {513A6C85-AE46-498A-A651-592E142B33A1}
+		{8F0E84DB-E69C-461B-987F-0844DB6F68FE} = {B153CE47-97C3-4FBF-9EED-7C65B7D804AD}
+		{A5A79A5B-8E34-4EA0-A692-61022F664103} = {8F0E84DB-E69C-461B-987F-0844DB6F68FE}
+		{5E065EA6-AAA1-4082-856C-124CECA8A099} = {8F0E84DB-E69C-461B-987F-0844DB6F68FE}
 	EndGlobalSection
 EndGlobal
