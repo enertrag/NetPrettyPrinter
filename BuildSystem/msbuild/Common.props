@@ -7,7 +7,6 @@
     <InformationalVersion>$(AssemblyVersion)</InformationalVersion>
     <Company>ENERTRAG SE</Company>
     <Authors>$(Company)</Authors>
-    <Description>A .NET pretty printing combinator library for C# and F#</Description>
     <Copyright>Copyright (c) 2022 ENERTRAG SE. All rights reserved.</Copyright>
     <RepositoryUrl>https://github.com/enertrag/NetPrettyPrinter</RepositoryUrl>
   </PropertyGroup>

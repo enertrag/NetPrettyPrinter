@@ -6,4 +6,7 @@
     <Nullable>enable</Nullable>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
+  <PropertyGroup>
+    <Description>A .NET pretty printing combinator library for C#</Description>
+  </PropertyGroup>
 </Project>
