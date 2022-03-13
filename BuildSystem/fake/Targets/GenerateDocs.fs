@@ -30,7 +30,6 @@ namespace Targets
 
 module GenerateDocs =
     open Fake.Core
-    open FSharp.Formatting.ApiDocs
 
     let target (_: TargetParameter) =
         ignore ()

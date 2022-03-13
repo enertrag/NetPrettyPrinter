@@ -48,7 +48,7 @@ let private setupTargetDependendies () =
     "Clean" ==> "Rebuild" |> ignore
     "Build" ==> "Rebuild" |> ignore
     "Clean" ?=> "Build" |> ignore
-    "Build" ==> "Pack" |> ignore
+    "Restore" ==> "Pack" |> ignore
     "Build" ==> "GenerateDocs" |> ignore
 
 let private setupFakeContext (args: string list) =

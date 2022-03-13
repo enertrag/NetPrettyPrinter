@@ -51,5 +51,5 @@ module Pack =
                     IncludeSymbols = true
                     OutputPath = Some("nupkgs")
                     NoRestore = true
-                    NoBuild = true })
+                    NoBuild = false })
         )
